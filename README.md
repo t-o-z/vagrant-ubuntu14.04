@@ -2,7 +2,7 @@
 
 This envirment is Ubuntu14.04 LTS use vagrant.  
 You can launch the foundation of the web application in one word "vagrant up".  
-It would be useful if you are using KGOYA's VPS.
+It would be useful if you are using KAGOYA's VPS.
 
 ```
 vagrant up
@@ -13,7 +13,7 @@ vagrant up
     * Ubuntu 14.04 LTS
     * ubuntu/trusty64
 * Web Server
-    * Apache
+    * Apache2.4.7
 * PHP
     * PHP5.6
 * Database

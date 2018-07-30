@@ -85,8 +85,6 @@ sudo apt-get -y install php5.6 php5.6-cgi libapache2-mod-php5.6 php5.6-common ph
 echoTitle 'Setting: PHP with Apache'
 # ---------------------------------------------------------------------------------------------------------------------
 # Trigger changes in apache
-sudo a2enconf php5.6-cgi.conf
-sudo a2enconf php-fpm
 sudo service apache2 restart
 
 # ---------------------------------------------------------------------------------------------------------------------
