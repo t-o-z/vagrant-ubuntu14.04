@@ -1,5 +1,9 @@
 # vagrant-ubuntu14.04
 
+This envirment is Ubuntu14.04 LTS use vagrant.  
+You can launch the foundation of the web application in one word "vagrant up".  
+It would be useful if you are using KGOYA's VPS.
+
 ```
 vagrant up
 -> http://192.168.33.101/index.php
@@ -11,6 +15,6 @@ vagrant up
 * Web Server
     * Apache
 * PHP
-    * PHP5
+    * PHP5.5.9
 * Database
     * MySQL5.6
