@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 # Variables & Functions
 # ---------------------------------------------------------------------------------------------------------------------
-APP_DATABASE_NAME='database'
+APP_DATABASE_NAME='test_db'
 
 echoTitle () {
     echo -e "\033[0;30m\033[42m -- $1 -- \033[0m"
@@ -78,8 +78,7 @@ sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get update
 sudo apt-get upgrade
 
-sudo apt-get install php5.6  
-sudo apt-get -y install php5.6 php5.6-cgi libapache2-mod-php5.6 php5.6-common php-pear
+sudo apt-get -y install php5.6 php5.6-cgi libapache2-mod-php5.6 php5.6-common php-pear php-mbstring php-xml
 
 # ---------------------------------------------------------------------------------------------------------------------
 echoTitle 'Setting: PHP with Apache'
