@@ -14,7 +14,7 @@ echoTitle () {
 echoTitle 'Virtual Machine Setup Ubuntu 14.04 LTS'
 # ---------------------------------------------------------------------------------------------------------------------
 # Update packages
-apt-get update -qq
+apt-get -y update -qq
 apt-get -y install git curl vim
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -75,8 +75,8 @@ apt-get --purge autoremove -y
 # Install packages(first adding repository)
 sudo add-apt-repository -y ppa:ondrej/apache2
 sudo add-apt-repository -y ppa:ondrej/php
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
 sudo apt-get -y install php5.6 php5.6-cgi libapache2-mod-php5.6 php5.6-common php-pear php-mbstring php-xml
 
