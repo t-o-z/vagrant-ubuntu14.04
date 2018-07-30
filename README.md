@@ -15,6 +15,6 @@ vagrant up
 * Web Server
     * Apache
 * PHP
-    * PHP5.5.9
+    * PHP5.6
 * Database
     * MySQL5.6

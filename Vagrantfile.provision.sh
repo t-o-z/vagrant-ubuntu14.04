@@ -72,18 +72,22 @@ sudo apt-get remove php5-common -y
 apt-get purge php5-fpm -y
 apt-get --purge autoremove -y
 
-# Install packages
-sudo apt-get install -y php5-fpm php5-mysql php5 libapache2-mod-php5
-sudo apt-get install -y php5-cli php5-common php5-mbstring php5-gd php5-intl php5-xml php5-mysql php5-mcrypt php5-zip
+# Install packages(first adding repository)
+sudo add-apt-repository -y ppa:ondrej/apache2
+sudo add-apt-repository -y ppa:ondrej/php
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install php5.6  
+sudo apt-get -y install php5.6 php5.6-cgi libapache2-mod-php5.6 php5.6-common php-pear
 
 # ---------------------------------------------------------------------------------------------------------------------
 echoTitle 'Setting: PHP with Apache'
 # ---------------------------------------------------------------------------------------------------------------------
-apt-get install -y libapache2-mod-php
-
 # Trigger changes in apache
-a2enconf php-fpm
-sudo service apache2 reload
+sudo a2enconf php5.6-cgi.conf
+sudo a2enconf php-fpm
+sudo service apache2 restart
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Others
@@ -92,6 +96,5 @@ sudo service apache2 reload
 echoTitle "Your machine has been provisioned"
 echo "-------------------------------------------"
 echo "MySQL is available on port 3306 with username 'root' and password 'password'"
-echo "(you have to use 127.0.0.1 as opposed to 'localhost')"
 echo "Apache is available on port 80"
 echo -e "Head over to http://192.168.33.101 to get started"
