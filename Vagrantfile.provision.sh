@@ -11,7 +11,7 @@ echoTitle () {
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
-echoTitle 'Virtual Machine Setup Ubuntu 14.04'
+echoTitle 'Virtual Machine Setup Ubuntu 14.04 LTS'
 # ---------------------------------------------------------------------------------------------------------------------
 # Update packages
 apt-get update -qq
@@ -23,20 +23,20 @@ echoTitle 'Installing and Setting: Apache'
 # Install packages
 apt-get install -y apache2 libapache2-mod-fastcgi apache2-mpm-worker
 
-# Add ServerName to httpd.conf
-echo "ServerName localhost" > /etc/apache2/httpd.conf
+# Add ServerName to apache2.conf and delete tag of default document root
+sed 's/<!--.*-->//' /etc/apache2/apache2.conf | sed '/<!--/,/-->/d' | grep -v ^\\s*$
+sed "20i\ServerName localhost" /etc/apache2/apache2.conf
 
 # Setup hosts file
 VHOST=$(cat <<EOF
-    <VirtualHost *:80>
-      DocumentRoot "/var/www"
-      ServerName app.dev
-      ServerAlias app.dev
-      <Directory "/var/www">
-        AllowOverride All
-        Require all granted
-      </Directory>
-    </VirtualHost>
+<VirtualHost *:80>
+    DocumentRoot "/var/www"
+    ServerName localhost
+    <Directory "/var/www">
+    AllowOverride All
+    Require all granted
+    </Directory>
+</VirtualHost>
 EOF
 )
 echo "${VHOST}" > /etc/apache2/sites-enabled/000-default.conf
@@ -58,7 +58,6 @@ apt-get install -y mysql-server-5.6 mysql-client-5.6 mysql-common-5.6
 # Setup database
 mysql -uroot -ppassword -e "CREATE DATABASE IF NOT EXISTS $APP_DATABASE_NAME;";
 mysql -uroot -ppassword -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';"
-mysql -uroot -ppassword -e "GRANT ALL PRIVILEGES ON *.* TO 'database'@'%' IDENTIFIED BY 'password';"
 
 sudo service mysql restart
 
