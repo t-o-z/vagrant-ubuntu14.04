@@ -24,8 +24,8 @@ echoTitle 'Installing and Setting: Apache'
 apt-get install -y apache2 libapache2-mod-fastcgi apache2-mpm-worker
 
 # Add ServerName to apache2.conf and delete tag of default document root
-sed 's/<!--.*-->//' /etc/apache2/apache2.conf | sed '/<!--/,/-->/d' | grep -v ^\\s*$
-sed "20i\ServerName localhost" /etc/apache2/apache2.conf
+sudo sed -i -e "70i\ServerName localhost" /etc/apache2/apache2.conf
+sudo sed -i -e "/<Directory \/var\/www\//,/\/Directory>/d" /etc/apache2/apache2.conf
 
 # Setup hosts file
 VHOST=$(cat <<EOF
